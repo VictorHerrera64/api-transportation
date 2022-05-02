@@ -1,26 +1,61 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateRiderDto } from './dto/create-rider.dto';
 import { UpdateRiderDto } from './dto/update-rider.dto';
+import { Rider } from './entities/rider.entity';
 
 @Injectable()
 export class RidersService {
+  // REPOSITORY'S CONSTRUCTOR
+  constructor(
+    @InjectRepository(Rider)
+    private riderRepository: Repository<Rider>,
+  ) {}
+// RIDERS'S CRUD
   create(createRiderDto: CreateRiderDto) {
-    return 'This action adds a new rider';
+    /*
+    Function Create
+    Params: A rider.
+    return: A rider created.
+    */
+    const result = this.riderRepository.save(createRiderDto);
+    return result;
   }
 
   findAll() {
-    return `This action returns all riders`;
+    /*
+    Function findAll
+    return: All riders
+    */
+    return this.riderRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} rider`;
+    /*
+    Function findOne
+    Param: A rider's id
+    return: A rider with that id
+    */
+    return this.riderRepository.findOne(id);
   }
 
-  update(id: number, updateRiderDto: UpdateRiderDto) {
-    return `This action updates a #${id} rider`;
+  async update(id: number, updateRiderDto: UpdateRiderDto) {
+     /*
+    Function update
+    Param: A rider's id and that rider
+    return: A rider with the information update
+    */
+    const result = await this.riderRepository.update(id, updateRiderDto)
+    return result;
   }
 
   remove(id: number) {
-    return `This action removes a #${id} rider`;
+     /*
+    Function remove
+    Param: A rider's id
+    return: remove that rider
+    */
+    return this.riderRepository.delete(id);
   }
 }

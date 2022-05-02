@@ -1,26 +1,62 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateCountryDto } from './dto/create-country.dto';
 import { UpdateCountryDto } from './dto/update-country.dto';
+import { Country } from './entities/country.entity';
 
 @Injectable()
 export class CountriesService {
+   // REPOSITORY'S CONSTRUCTOR
+   constructor(
+    @InjectRepository(Country)
+    private countryRepository: Repository<Country>,
+  ) {}
+
+  // Country'S CRUD
   create(createCountryDto: CreateCountryDto) {
-    return 'This action adds a new country';
+     /*
+    Function Create
+    Params: A Country.
+    return: A Country created.
+    */
+    const result = this.countryRepository.save(createCountryDto);
+    return result;
   }
 
   findAll() {
-    return `This action returns all countries`;
+    /*
+    Function findAll
+    return: All countries
+    */
+    return this.countryRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} country`;
+   /*
+    Function findOne
+    Param: A country's id
+    return: A country with that id
+    */
+    return this.countryRepository.findOne(id);
   }
 
-  update(id: number, updateCountryDto: UpdateCountryDto) {
-    return `This action updates a #${id} country`;
+  async update(id: number, updateCountryDto: UpdateCountryDto) {
+     /*
+    Function update
+    Param: A coumtry's id and that country
+    return: A country with the information update
+    */
+    const result = await this.countryRepository.update(id, updateCountryDto)
+    return result;
   }
 
   remove(id: number) {
-    return `This action removes a #${id} country`;
+  /*
+    Function remove
+    Param: A country's id
+    return: remove that country
+    */
+    return this.countryRepository.delete(id);
   }
 }

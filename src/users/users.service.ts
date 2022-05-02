@@ -1,26 +1,61 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
+   // REPOSITORY'S CONSTRUCTOR
+   constructor(
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
+  ) {}
+  // USER'S CRUD
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    /*
+    Function Create
+    Params: An user.
+    return: An user created.
+    */
+    const result = this.userRepository.save(createUserDto);
+    return result;
   }
 
   findAll() {
-    return `This action returns all users`;
+     /*
+    Function findAll
+    return: All users
+    */
+    return this.userRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} user`;
+     /*
+    Function findOne
+    Param: An user's id
+    return: An user with that id
+    */
+    return this.userRepository.findOne(id);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+     /*
+    Function update
+    Param: An user's id and that user
+    return: An user with the information update
+    */
+    const result = await this.userRepository.update(id,updateUserDto)
+    return result;
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+     /*
+    Function remove
+    Param: An user's id
+    return: remove that user
+    */
+    return this.userRepository.delete(id);
   }
 }

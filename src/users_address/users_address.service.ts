@@ -1,26 +1,61 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateUsersAddressDto } from './dto/create-users_address.dto';
 import { UpdateUsersAddressDto } from './dto/update-users_address.dto';
+import { UsersAddress } from './entities/users_address.entity';
 
 @Injectable()
 export class UsersAddressService {
+   // REPOSITORY'S CONSTRUCTOR
+   constructor(
+    @InjectRepository(UsersAddress)
+    private userAddressRepository: Repository<UsersAddress>,
+  ) {}
+  // USER address'S CRUD
   create(createUsersAddressDto: CreateUsersAddressDto) {
-    return 'This action adds a new usersAddress';
+   /*
+    Function Create
+    Params: An user address.
+    return: An user address created.
+    */
+   const result = this.userAddressRepository.save(createUsersAddressDto);
+   return result
   }
 
   findAll() {
-    return `This action returns all usersAddress`;
+      /*
+    Function findAll
+    return: All user address
+    */
+    return this.userAddressRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} usersAddress`;
+    /*
+    Function findOne
+    Param: An user address's id
+    return: An userddress with that id
+    */
+    return this.userAddressRepository.findOne(id);
   }
 
-  update(id: number, updateUsersAddressDto: UpdateUsersAddressDto) {
-    return `This action updates a #${id} usersAddress`;
+  async update(id: number, updateUsersAddressDto: UpdateUsersAddressDto) {
+      /*
+    Function update
+    Param: An user address's id and that user address
+    return: An user address with the information update
+    */
+    const result = await this.userAddressRepository.update(id,updateUsersAddressDto)
+    return result;
   }
 
   remove(id: number) {
-    return `This action removes a #${id} usersAddress`;
+     /*
+    Function remove
+    Param: An user address's id
+    return: remove that user address
+    */
+    return this.userAddressRepository.delete(id);
   }
 }
