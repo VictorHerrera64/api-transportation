@@ -20,7 +20,10 @@ import { CityModule } from './city/city.module';
 import { City } from './city/entities/city.entity';
 
 @Module({
-  imports: [
+  imports: [RidersModule, UsersModule, 
+    CountriesModule, UsersAddressModule, 
+    DriversModule, LicenseTypesModule, 
+    DriverLicensesModule,CityModule,
     TypeOrmModule.forRoot(
       {
       type: 'postgres',
@@ -28,16 +31,13 @@ import { City } from './city/entities/city.entity';
       port: 5432,
       username: 'postgres',
       password: '12345',
-      database: 'api-transportation',
+      database: 'transportation',
       schema: 'public',
       entities: [Country,DriverLicense,Driver,
         LicenseType,Rider,User,
         UsersAddress,City],
-      synchronize: true,
-    }
-    ),
-    RidersModule, UsersModule, CountriesModule, UsersAddressModule, 
-    DriversModule, LicenseTypesModule, DriverLicensesModule,CityModule
+        synchronize: true
+    }) 
   ],
   controllers: [AppController],
   providers: [AppService],
