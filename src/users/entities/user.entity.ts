@@ -1,4 +1,7 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Driver } from "src/drivers/entities/driver.entity";
+import { Rider } from "src/riders/entities/rider.entity";
+import { UsersAddress } from "src/users_address/entities/users_address.entity";
+import { Column, CreateDateColumn,Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -44,4 +47,13 @@ export class User {
     @CreateDateColumn()
     update_at: Date;
 
+    @OneToOne(() => Rider, (rider) => rider.user_id, {eager: true})
+    rider: Rider;
+
+    @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.id, {eager: true})
+    usersAddress: UsersAddress[];
+
+    @OneToOne(() => Driver, (driver) => driver.user_id, {eager: true})
+    driver: Driver;
+    
 }

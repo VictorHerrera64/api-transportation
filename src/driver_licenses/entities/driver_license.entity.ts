@@ -1,4 +1,6 @@
-import { Entity,Column, PrimaryGeneratedColumn, CreateDateColumn} from "typeorm";
+import { Driver } from "src/drivers/entities/driver.entity";
+import { LicenseType } from "src/license_types/entities/license_type.entity";
+import { Entity,Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne} from "typeorm";
 
 @Entity()
 export class DriverLicense {
@@ -9,7 +11,7 @@ id: number;
 driver_id: number;
 
 @Column({type:'int4'})
-license_type: number;
+license_type_id: number;
 
 @Column({type:'date'})
 expedition_date: Date;
@@ -22,4 +24,11 @@ create_at: Date;
 
 @CreateDateColumn()
 update_at: Date;
+
+@ManyToOne(() => Driver, (driver) => driver.id, {eager: true})
+driver: Driver;
+
+@ManyToOne(() => LicenseType, (licenseType) => licenseType.id, {eager: true})
+licenseType: LicenseType;
+
 }

@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "src/users/entities/user.entity";
+import { Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Rider {
@@ -13,4 +14,7 @@ export class Rider {
   
     @CreateDateColumn()
     update_at: Date;
+
+    @OneToOne(() => User, (user) => user.id, {eager: true})
+    user: User;
 }

@@ -1,4 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Country } from "src/countries/entities/country.entity";
+import { UsersAddress } from "src/users_address/entities/users_address.entity";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class City {
@@ -19,4 +21,10 @@ export class City {
   
     @CreateDateColumn()
     update_at: Date;
+
+    @ManyToOne(() => Country, (country) => country.id, {eager: true})
+    country: Country;
+
+    @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.city_id, {eager: true})
+    usersAddress: UsersAddress[];
 }
