@@ -39,7 +39,7 @@ export class User {
     password: string;
 
     @Column({type:'date'})
-    dat: Date;
+    birthday: Date;
 
     @CreateDateColumn()
     create_at: Date;
