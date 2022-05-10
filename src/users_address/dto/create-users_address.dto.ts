@@ -1,25 +1,25 @@
-import { IsDate, IsEmpty, IsNumber } from "class-validator";
+import { IsDate, IsEmpty, IsNotEmpty, IsNumber } from "class-validator";
 
 export class CreateUsersAddressDto {
-    @IsNumber()
+    
     @IsEmpty()
     id: number;
 
     @IsNumber()
-    @IsEmpty()
+    @IsNotEmpty()
     user_id: number;
 
     @IsNumber()
-    @IsEmpty()
+    @IsNotEmpty()
     city_id: number;
 
-    @IsEmpty() 
+    @IsNotEmpty() 
     address: string;
 
-    @IsEmpty() 
+    @IsNotEmpty()
     description: string;
 
-    @IsEmpty() 
+    @IsNotEmpty()
     zipcode: string;
 
 }

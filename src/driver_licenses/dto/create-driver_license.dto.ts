@@ -1,30 +1,28 @@
-import { IsDate, IsEmpty, IsNumber } from "class-validator";
+import {IsDateString, IsEmpty, IsNotEmpty, IsNumber } from "class-validator";
 
 export class CreateDriverLicenseDto {
 
-    @IsNumber()
+    
     @IsEmpty()
     id: number;
 
     @IsNumber()
-    @IsEmpty()
+    @IsNotEmpty()
     driver_id: number;
 
     @IsNumber()
-    @IsEmpty()
+    @IsNotEmpty()
     license_type_id: number;
 
-    @IsDate()
-    @IsEmpty()
+    @IsDateString()
+    @IsNotEmpty()
     expedition_date: Date;
 
-    @IsDate()
-    @IsEmpty()
+    @IsDateString()
+    @IsNotEmpty()
     expiration_date: Date;
 
-    @IsDate()
-    @IsEmpty()
-    create_at: Date;
+   
 
     
     

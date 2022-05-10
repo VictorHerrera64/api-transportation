@@ -31,10 +31,10 @@ export class UsersAddress {
     })
     zipcode: string;
 
-    @ManyToOne(() => City, (city) => city.id, { eager: true })
+    @ManyToOne(() => City, (city) => city.id)
     city: City;
 
-    @ManyToOne(() => User, (user) => user.id, { eager: true })
+    @ManyToOne(() => User, (user) => user.id)
     user: User;
 }
 

@@ -15,6 +15,6 @@ export class Rider {
     @CreateDateColumn()
     update_at: Date;
 
-    @OneToOne(() => User, (user) => user.id, {eager: true})
+    @OneToOne(() => User, (user) => user.id)
     user: User;
 }

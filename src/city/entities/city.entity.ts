@@ -22,9 +22,9 @@ export class City {
     @CreateDateColumn()
     update_at: Date;
 
-    @ManyToOne(() => Country, (country) => country.id, {eager: true})
+    @ManyToOne(() => Country, (country) => country.id)
     country: Country;
 
-    @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.city_id, {eager: true})
+    @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.city_id)
     usersAddress: UsersAddress[];
 }

@@ -13,16 +13,16 @@ export class Driver {
     })
     user_id: number;
 
-    @CreateDateColumn()
+    @CreateDateColumn({type:'date'})
     create_at: Date;
 
-    @CreateDateColumn()
+    @CreateDateColumn({type:'date'})
     update_at: Date;
 
-    @OneToOne(() => User, (user) => user.id, {eager: true})
+    @OneToOne(() => User, (user) => user.id)
     user: User;
 
-    @OneToMany(() => DriverLicense, (driverLicense) => driverLicense.driver_id, {eager: true})
+    @OneToMany(() => DriverLicense, (driverLicense) => driverLicense.driver_id)
     driverLicense: DriverLicense[];
 
     

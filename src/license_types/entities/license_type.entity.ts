@@ -9,13 +9,13 @@ export class LicenseType {
     @Column({type:'varchar'})
     descripcion: string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({type:'date'})
     create_at: Date;
 
-    @CreateDateColumn()
+    @CreateDateColumn({type:'date'})
     update_at: Date;
 
-    @OneToMany(() => DriverLicense, (driverLicense) => driverLicense.license_type_id, {eager: true})
+    @OneToMany(() => DriverLicense, (driverLicense) => driverLicense.license_type_id)
     driverLicense: DriverLicense[];
 
 }

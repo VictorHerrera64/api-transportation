@@ -19,16 +19,16 @@ expedition_date: Date;
 @Column({type:'date'})
 expiration_date: Date;
 
-@CreateDateColumn()
+@CreateDateColumn({type:'date'})
 create_at: Date;
 
-@CreateDateColumn()
+@CreateDateColumn({type:'date'})
 update_at: Date;
 
-@ManyToOne(() => Driver, (driver) => driver.id, {eager: true})
+@ManyToOne(() => Driver, (driver) => driver.id)
 driver: Driver;
 
-@ManyToOne(() => LicenseType, (licenseType) => licenseType.id, {eager: true})
+@ManyToOne(() => LicenseType, (licenseType) => licenseType.id)
 licenseType: LicenseType;
 
 }

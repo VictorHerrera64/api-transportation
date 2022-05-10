@@ -1,14 +1,10 @@
-import { IsDate, IsNotEmpty, IsNumber } from "class-validator";
+import {IsDateString, IsEmpty, IsNotEmpty, IsNumber } from "class-validator";
 
 export class CreateCountryDto {
-    @IsNumber()
-    @IsNotEmpty()
+    @IsEmpty()
     id: number;
 
     @IsNotEmpty()
     description: string;
 
-    @IsDate()
-    @IsNotEmpty()
-    create_at: Date;
 }

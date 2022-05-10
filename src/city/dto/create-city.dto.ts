@@ -1,9 +1,8 @@
-import { IsDate, IsNotEmpty, IsNumber } from "class-validator";
+import {IsDateString, IsEmpty, IsNotEmpty, IsNumber } from "class-validator";
 
 export class CreateCityDto {
 
-    @IsNumber()
-    @IsNotEmpty()
+    @IsEmpty()
     id: number;
 
     @IsNumber()
@@ -12,9 +11,5 @@ export class CreateCityDto {
 
     @IsNotEmpty()
     name: string;
-
-    @IsDate()
-    @IsNotEmpty()
-    create_at: Date;
 
 }

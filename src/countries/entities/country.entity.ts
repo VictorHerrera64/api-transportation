@@ -8,12 +8,12 @@ export class Country {
   @Column()
   description: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({type:'date'})
   create_at: Date;
 
-  @CreateDateColumn()
+  @CreateDateColumn({type:'date'})
   update_at: Date;
 
-  @OneToMany(() => City, (city) => city.country_id, {eager: true})
+  @OneToMany(() => City, (city) => city.country_id)
   city: City[];
 }
