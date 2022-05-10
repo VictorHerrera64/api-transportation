@@ -15,6 +15,7 @@ export class User {
     name: string;
 
     @Column({
+        nullable: true,
         type:'varchar',
         length:150
     })
@@ -41,10 +42,10 @@ export class User {
     @Column({type:'date'})
     birthday: Date;
 
-    @CreateDateColumn()
+    @CreateDateColumn({type:'date'})
     create_at: Date;
   
-    @CreateDateColumn()
+    @CreateDateColumn({type:'date'})
     update_at: Date;
 
     @OneToOne(() => Rider, (rider) => rider.user_id, {eager: true})

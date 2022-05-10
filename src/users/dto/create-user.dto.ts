@@ -1,16 +1,9 @@
-import { IsDate, IsEmail, isEmpty, IsEmpty, IsNumber } from "class-validator";
+import { IsDate, IsEmail,IsEmpty} from "class-validator";
 
 export class CreateUserDto {
 
-    @IsNumber()
-    @IsEmpty()
-    id: number;
-
     @IsEmpty()
     name: string;
-
-    @IsEmpty()
-    middlename: string;
 
     @IsEmpty()
     lastname: string;
