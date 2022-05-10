@@ -16,10 +16,10 @@ export class City {
     })
     name: string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({type:'date'})
     create_at: Date;
   
-    @CreateDateColumn()
+    @CreateDateColumn({type:'date'})
     update_at: Date;
 
     @ManyToOne(() => Country, (country) => country.id)
