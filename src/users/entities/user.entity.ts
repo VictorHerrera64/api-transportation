@@ -51,7 +51,11 @@ export class User {
     @OneToOne(() => Rider, (rider) => rider.user_id)
     rider: Rider;
 
-    @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.id)
+    @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.user,
+    {
+        eager: true,
+        cascade:true
+    })
     usersAddress: UsersAddress[];
 
     @OneToOne(() => Driver, (driver) => driver.user_id)
