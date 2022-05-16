@@ -48,7 +48,11 @@ export class User {
     @CreateDateColumn({type:'date'})
     update_at: Date;
 
-    @OneToOne(() => Rider, (rider) => rider.user_id)
+    @OneToOne(() => Rider, (rider) => rider.user,
+    {
+        eager:true,
+        cascade:true
+    })
     rider: Rider;
 
     @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.user,
