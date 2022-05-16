@@ -1,5 +1,5 @@
 import { City } from 'src/city/entities/city.entity';
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany, JoinColumn } from 'typeorm';
 @Entity()
 export class Country {
 @PrimaryGeneratedColumn()
@@ -13,7 +13,9 @@ export class Country {
 
   @CreateDateColumn({type:'date'})
   update_at: Date;
-
-  @OneToMany(() => City, (city) => city.country_id)
-  city: City[];
+ 
+  @OneToMany(() => City, (city) => city.country)
+  @JoinColumn({name:'country_id'})
+  cities: City[];
+  
 }

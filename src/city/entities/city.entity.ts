@@ -1,30 +1,36 @@
 import { Country } from "src/countries/entities/country.entity";
 import { UsersAddress } from "src/users_address/entities/users_address.entity";
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class City {
-    @PrimaryGeneratedColumn({type:'int4'})
+    @PrimaryGeneratedColumn({ type: 'int4' })
     id: number;
 
-    @Column({type:'int4'})
+    @Column({ type: 'int4' })
     country_id: number;
 
     @Column({
-        type:'varchar',
+        type: 'varchar',
         length: 150
     })
     name: string;
 
-    @CreateDateColumn({type:'date'})
+    @CreateDateColumn({ type: 'date' })
     create_at: Date;
-  
-    @CreateDateColumn({type:'date'})
+
+    @CreateDateColumn({ type: 'date' })
     update_at: Date;
 
-    @ManyToOne(() => Country, (country) => country.id)
+    @ManyToOne(() => Country, (country) => country.cities,
+        {
+            eager: true,
+            cascade: true
+            
+        })
     country: Country;
-
-    @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.city_id)
+    /*
+    @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.city_id, {eager: true})
     usersAddress: UsersAddress[];
+    */
 }
