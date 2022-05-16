@@ -25,8 +25,12 @@ export class City {
     @ManyToOne(() => Country, (country) => country.cities)
     @JoinColumn({ name: 'country_id'})
     country: Country;
-    /*
-    @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.city_id, {eager: true})
+    
+    @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.city, 
+    {
+        eager: true,
+        cascade:true
+    })
     usersAddress: UsersAddress[];
-    */
+    
 }

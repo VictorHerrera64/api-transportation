@@ -1,6 +1,6 @@
 import { City } from "src/city/entities/city.entity";
 import { User } from "src/users/entities/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class UsersAddress {
@@ -31,10 +31,12 @@ export class UsersAddress {
     })
     zipcode: string;
 
-    @ManyToOne(() => City, (city) => city.id)
+    @ManyToOne(() => City, (city) => city.usersAddress)
+    @JoinColumn({ name: 'city_id'})
     city: City;
 
-    @ManyToOne(() => User, (user) => user.id)
+    @ManyToOne(() => User, (user) => user.usersAddress)
+    @JoinColumn({ name: 'user_id'})
     user: User;
 }
 
