@@ -2,20 +2,24 @@ import { City } from 'src/city/entities/city.entity';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany, JoinColumn } from 'typeorm';
 @Entity()
 export class Country {
-@PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   description: string;
 
-  @CreateDateColumn({type:'date'})
+  @CreateDateColumn({ type: 'date' })
   create_at: Date;
 
-  @CreateDateColumn({type:'date'})
+  @CreateDateColumn({ type: 'date' })
   update_at: Date;
- 
-  @OneToMany(() => City, (city) => city.country)
-  @JoinColumn({name:'country_id'})
+
+  @OneToMany(() => City, (city) => city.country,
+    {
+      eager: true,
+      cascade: true
+
+    })
   cities: City[];
-  
+
 }

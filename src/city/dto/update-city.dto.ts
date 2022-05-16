@@ -8,9 +8,6 @@ export class UpdateCityDto extends PartialType(CreateCityDto) {
     @IsNotEmpty()
     id: number;
 
-    @IsNumber()
-    @IsNotEmpty()
-    country_id: number;
 
     @IsNotEmpty()
     name: string;

@@ -6,10 +6,10 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, Pri
 export class City {
     @PrimaryGeneratedColumn({ type: 'int4' })
     id: number;
-
+    
     @Column({ type: 'int4' })
     country_id: number;
-
+    
     @Column({
         type: 'varchar',
         length: 150
@@ -22,12 +22,8 @@ export class City {
     @CreateDateColumn({ type: 'date' })
     update_at: Date;
 
-    @ManyToOne(() => Country, (country) => country.cities,
-        {
-            eager: true,
-            cascade: true
-            
-        })
+    @ManyToOne(() => Country, (country) => country.cities)
+    @JoinColumn({ name: 'country_id'})
     country: Country;
     /*
     @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.city_id, {eager: true})

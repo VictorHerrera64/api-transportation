@@ -31,7 +31,7 @@ import { City } from './city/entities/city.entity';
       port: 5432,
       username: 'postgres',
       password: '12345',
-      database: 'transportation',
+      database: 'test',
       schema: 'public',
       entities: [Country,DriverLicense,Driver,
         LicenseType,Rider,User,

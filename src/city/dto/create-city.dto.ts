@@ -5,10 +5,6 @@ export class CreateCityDto {
     @IsEmpty()
     id: number;
 
-    @IsNumber()
-    @IsNotEmpty()
-    country_id: number;
-
     @IsNotEmpty()
     name: string;
 
