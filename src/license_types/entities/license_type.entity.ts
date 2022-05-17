@@ -7,7 +7,7 @@ export class LicenseType {
     id: number;
 
     @Column({type:'varchar'})
-    descripcion: string;
+    description: string;
 
     @CreateDateColumn({type:'date'})
     create_at: Date;
@@ -15,7 +15,11 @@ export class LicenseType {
     @CreateDateColumn({type:'date'})
     update_at: Date;
 
-    @OneToMany(() => DriverLicense, (driverLicense) => driverLicense.license_type_id)
+    @OneToMany(() => DriverLicense, (driverLicense) => driverLicense.licenseType,
+    {
+        eager:true,
+        cascade:true
+    })
     driverLicense: DriverLicense[];
 
 }

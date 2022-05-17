@@ -23,7 +23,11 @@ export class Driver {
     @JoinColumn({name:'user_id'})
     user: User;
 
-    @OneToMany(() => DriverLicense, (driverLicense) => driverLicense.driver_id)
+    @OneToMany(() => DriverLicense, (driverLicense) => driverLicense.driver,
+    {
+        eager:true,
+        cascade:true
+    })
     driverLicense: DriverLicense[];
 
     
