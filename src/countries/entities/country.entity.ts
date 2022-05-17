@@ -16,9 +16,7 @@ export class Country {
 
   @OneToMany(() => City, (city) => city.country,
     {
-      eager: true,
-      cascade: true
-
+      eager: true
     })
   cities: City[];
 

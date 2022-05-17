@@ -57,15 +57,13 @@ export class User {
 
     @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.user,
     {
-        eager: true,
-        cascade:true
+        eager: true
     })
     usersAddress: UsersAddress[];
 
     @OneToOne(() => Driver, (driver) => driver.user,
     {
-        eager:true,
-        cascade:true
+        eager:true
     })
     driver: Driver;
     

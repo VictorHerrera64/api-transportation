@@ -28,8 +28,7 @@ export class City {
     
     @OneToMany(() => UsersAddress, (usersAddress) => usersAddress.city, 
     {
-        eager: true,
-        cascade:true
+        eager: true
     })
     usersAddress: UsersAddress[];
     

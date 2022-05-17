@@ -17,8 +17,7 @@ export class LicenseType {
 
     @OneToMany(() => DriverLicense, (driverLicense) => driverLicense.licenseType,
     {
-        eager:true,
-        cascade:true
+        eager:true
     })
     driverLicense: DriverLicense[];
 
