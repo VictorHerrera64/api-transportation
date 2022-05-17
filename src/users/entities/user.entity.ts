@@ -62,7 +62,11 @@ export class User {
     })
     usersAddress: UsersAddress[];
 
-    @OneToOne(() => Driver, (driver) => driver.user_id)
+    @OneToOne(() => Driver, (driver) => driver.user,
+    {
+        eager:true,
+        cascade:true
+    })
     driver: Driver;
     
 }
