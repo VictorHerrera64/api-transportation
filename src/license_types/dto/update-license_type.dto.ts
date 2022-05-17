@@ -7,7 +7,6 @@ export class UpdateLicenseTypeDto extends PartialType(CreateLicenseTypeDto) {
     @IsNotEmpty()
     id: number;
 
-    @IsNumber()
     @IsNotEmpty()
-    user_id: number;
+    description:string;
 }
